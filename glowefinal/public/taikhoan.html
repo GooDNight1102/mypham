@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tài khoản | GLOWÉ</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/i18n.js"></script>
+  <script>document.documentElement.dataset.theme = localStorage.getItem('glowe_theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');</script>
+</head>
+<body>
+  <header id="site-header" class="site-header"></header>
+
+  <main class="container">
+    <div class="acc-head">
+      <span class="avatar lg" id="accAvatar">G</span>
+      <div>
+        <h1 id="accHello">Tài khoản của tôi</h1>
+        <span class="muted small" id="accSince"></span>
+      </div>
+    </div>
+
+    <!-- Tổng hợp: tổng đơn, tổng tiền, đang xử lý, hoàn thành -->
+    <div class="stats" id="summary"></div>
+
+    <div class="layout-2 acc-grid">
+      <div class="acc-main">
+        <!-- Tiến độ các đơn chưa hoàn tất -->
+        <section class="card" id="tien-do">
+          <div class="card-head"><h3>🚚 Tiến độ đơn hàng</h3><span class="small muted" id="activeCount"></span></div>
+          <div id="progress"></div>
+        </section>
+
+        <!-- Lịch sử: mọi đơn, kèm thanh tiến độ nhỏ -->
+        <section class="card">
+          <div class="card-head"><h3>🧾 Lịch sử đơn hàng</h3>
+            <select id="histFilter" aria-label="Lọc đơn hàng" style="width:auto">
+              <option value="">Tất cả</option><option value="active">Đang xử lý</option>
+              <option value="completed">Hoàn thành</option><option value="cancelled">Đã hủy</option>
+            </select></div>
+          <div id="orders" class="table-wrap"></div>
+        </section>
+      </div>
+
+      <aside class="acc-side">
+        <form id="profile" class="card" novalidate>
+          <h3>👤 Thông tin cá nhân</h3>
+          <label>Email <input name="email" disabled></label>
+          <label>Họ và tên <input name="fullName" required maxlength="100"></label>
+          <label>Số điện thoại <input name="phone" required pattern="0\d{9}" inputmode="numeric" maxlength="10"></label>
+          <label>Địa chỉ mặc định <textarea name="address" rows="2" maxlength="255"></textarea></label>
+          <p class="error"></p>
+          <button class="btn block">Lưu thay đổi</button>
+        </form>
+      </aside>
+    </div>
+  </main>
+
+  <footer id="site-footer"></footer>
+  <script src="js/common.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/account.js"></script>
+</body>
+</html>

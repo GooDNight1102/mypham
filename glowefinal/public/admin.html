@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quản trị | GLOWÉ</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/i18n.js"></script>
+  <script>document.documentElement.dataset.theme = localStorage.getItem('glowe_theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');</script>
+</head>
+<body>
+  <div class="admin-shell">
+    <!-- Sidebar trái -->
+    <aside class="admin-side">
+      <a class="logo" href="admin.html">GLOW<span>É</span><small>QUẢN TRỊ</small></a>
+      <nav aria-label="Quản trị">
+        <button data-view="dashboard">📊 Dashboard</button>
+        <button data-view="orders">📦 Đơn hàng <span class="badge-count" id="pendingCount" hidden></span></button>
+        <button data-view="products">🧴 Mỹ phẩm</button>
+        <button data-view="users">👥 Người dùng</button>
+      </nav>
+      <div class="side-foot">
+        <a class="side-link" href="index.html">🏬 <span>Về cửa hàng</span></a>
+        <button type="button" class="side-link" data-theme-switch>🌓 <span>Đổi nền sáng / tối</span></button>
+        <span class="theme-pill lang-pill on-light"><button type="button" data-lang="vi">VI</button>/<button type="button" data-lang="en">EN</button></span>
+        <div class="admin-user">
+          <span class="avatar" id="avatar">A</span>
+          <div><b id="adminName" class="small"></b><br><button type="button" class="auth-link" id="logout">Đăng xuất</button></div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <div class="admin-head">
+        <div>
+          <h1 id="viewTitle">Dashboard</h1>
+          <span class="muted small" id="viewSub"></span>
+        </div>
+        <button type="button" class="theme-toggle" data-theme-toggle aria-label="Đổi nền sáng/tối"></button>
+      </div>
+      <section id="view"></section>
+    </main>
+  </div>
+
+  <dialog id="product-dialog">
+    <form id="product-form" method="dialog" novalidate>
+      <h2 id="dialog-title">Thêm mỹ phẩm</h2>
+      <!-- Xem trước ảnh: cập nhật ngay khi sửa link ảnh / giá / danh mục / tồn kho -->
+      <div class="img-edit">
+        <div class="img-preview" id="imgPreview" aria-live="polite"></div>
+        <div class="img-fields">
+          <label>Tên sản phẩm <input name="name" required maxlength="150"></label>
+          <label>Link ảnh (tùy chọn)
+            <span class="img-url"><input name="imageUrl" type="url" maxlength="500" placeholder="https://... (dán link ảnh .jpg, .png, .webp)">
+              <button type="button" class="btn sm ghost" id="imgClear" title="Bỏ ảnh, dùng biểu tượng danh mục">Xóa ảnh</button></span>
+          </label>
+          <p class="small img-status" id="imgStatus"></p>
+        </div>
+      </div>
+      <div class="row">
+        <label>Thương hiệu <input name="brand" required maxlength="80"></label>
+        <label>Danh mục <select name="categoryId" required></select></label>
+      </div>
+      <div class="row">
+        <label>Giá bán (₫) <input name="price" type="number" min="1" step="1000" required></label>
+        <label>Giá gốc (₫, nếu giảm giá) <input name="oldPrice" type="number" min="1" step="1000"></label>
+      </div>
+      <div class="row">
+        <label>Tồn kho <input name="stock" type="number" min="0" step="1" required></label>
+        <label>Dung tích <input name="volume" maxlength="30" placeholder="30ml"></label>
+      </div>
+      <label>Loại da <input name="skinType" maxlength="60" placeholder="Da dầu, mụn"></label>
+      <label>Mô tả <textarea name="description" rows="3"></textarea></label>
+      <label class="method" style="margin-bottom:14px"><input type="checkbox" name="isActive" checked> Đang kinh doanh</label>
+      <p class="error" id="product-err"></p>
+      <div class="actions" style="justify-content:flex-end;margin-top:0">
+        <button type="button" class="btn ghost" id="product-cancel">Hủy</button>
+        <button class="btn" value="save">Lưu</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="tip" id="tip" role="tooltip"></div>
+  <script src="js/common.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

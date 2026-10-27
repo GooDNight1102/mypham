@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Đăng nhập | GLOWÉ</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/i18n.js"></script>
+  <script>document.documentElement.dataset.theme = localStorage.getItem('glowe_theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');</script>
+</head>
+<body>
+  <!-- Đăng nhập / đăng ký: khung vòm "gương trang điểm" giữa nền lụa chuyển màu -->
+  <div class="auth-screen is-login" id="authScreen">
+    <div class="silk" aria-hidden="true"></div>
+
+    <header class="auth-bar">
+      <a class="auth-brand" href="index.html">GLOW<span>É</span></a>
+      <a class="auth-close" href="index.html">← Về cửa hàng</a>
+      <span class="theme-pill lang-pill on-light"><button type="button" data-lang="vi">VI</button>/<button type="button" data-lang="en">EN</button></span>
+      <button type="button" class="theme-toggle" data-theme-toggle aria-label="Đổi nền sáng/tối"></button>
+    </header>
+
+    <main class="auth-stage">
+      <!-- Tem mỹ phẩm lơ lửng hai bên (ẩn trên điện thoại) -->
+      <div aria-hidden="true" id="stickers">
+        <span class="sticker st1">🧴<small>Serum</small></span>
+        <span class="sticker st2">💄<small>Son lì</small></span>
+        <span class="sticker st3">☀️<small>Chống nắng</small></span>
+        <span class="sticker st4">🌸<small>Nước hoa</small></span>
+      </div>
+
+      <div class="arch">
+        <form id="authForm" class="auth-card" novalidate>
+          <div class="compact" aria-hidden="true"><span id="compactIcon">💄</span></div>
+          <h2 id="authTitle">Chào mừng trở lại</h2>
+          <p class="auth-sub" id="authSub">Đăng nhập để tiếp tục mua sắm tại GLOWÉ</p>
+
+          <div class="mode-switch" role="group" aria-label="Chọn đăng nhập hoặc đăng ký">
+            <button type="button" data-mode="login" aria-pressed="true">Đăng nhập</button>
+            <button type="button" data-mode="register" aria-pressed="false">Đăng ký</button>
+          </div>
+
+          <div class="fl reg-only"><input id="f-name" name="fullName" maxlength="100" autocomplete="name" placeholder=" "><label for="f-name">Họ và tên</label><span class="ic" aria-hidden="true">👤</span></div>
+          <div class="fl"><input id="f-email" name="email" type="email" required autocomplete="email" placeholder=" "><label for="f-email">Email</label><span class="ic" aria-hidden="true">✉️</span></div>
+          <div class="fl reg-only"><input id="f-phone" name="phone" type="tel" inputmode="numeric" maxlength="10" autocomplete="tel" placeholder=" "><label for="f-phone">Số điện thoại</label><span class="ic" aria-hidden="true">📞</span></div>
+          <div class="fl"><input id="f-pass" name="password" type="password" required minlength="6" autocomplete="current-password" placeholder=" "><label for="f-pass">Mật khẩu</label><span class="ic" aria-hidden="true">🔒</span>
+            <button type="button" class="eye" data-eye aria-label="Hiện/ẩn mật khẩu">👁</button></div>
+
+          <div class="auth-row">
+            <label class="switch"><input type="checkbox" name="remember" checked> Ghi nhớ 7 ngày</label>
+            <button type="button" class="auth-link" data-forgot>Quên mật khẩu?</button>
+          </div>
+          <p class="reg-only small auth-note">Tài khoản đăng ký trên web là <b>Khách hàng</b>. Tài khoản quản trị do admin cấp.</p>
+          <p class="error" id="authError" role="alert"></p>
+          <button type="submit" class="auth-btn" id="authSubmit">Đăng nhập</button>
+
+          <div class="auth-div"><span>HOẶC</span></div>
+          <div class="auth-social">
+            <button type="button" data-social="Google"><svg viewBox="0 0 24 24"><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5a5.6 5.6 0 0 1-2.4 3.6v3h3.9c2.2-2.1 3.5-5.1 3.5-8.8z"/><path fill="#34A853" d="M12 24c3.2 0 6-1.1 8-2.9l-3.9-3c-1.1.7-2.5 1.2-4.1 1.2-3.1 0-5.8-2.1-6.7-5H1.3v3.1A12 12 0 0 0 12 24z"/><path fill="#FBBC05" d="M5.3 14.3a7.2 7.2 0 0 1 0-4.6V6.6H1.3a12 12 0 0 0 0 10.8z"/><path fill="#EA4335" d="M12 4.8c1.8 0 3.3.6 4.6 1.8l3.4-3.4A12 12 0 0 0 1.3 6.6l4 3.1c.9-2.9 3.6-4.9 6.7-4.9z"/></svg>Google</button>
+            <button type="button" data-social="Facebook"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#1877F2"/><path fill="#fff" d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.5 1.6-1.5h1.7V4.4c-.3 0-1.3-.1-2.4-.1-2.4 0-4.1 1.5-4.1 4.2v2.3H7.6V14h2.7v8z"/></svg>Facebook</button>
+            <button type="button" data-social="Microsoft"><svg viewBox="0 0 24 24"><path fill="#F25022" d="M2 2h9.5v9.5H2z"/><path fill="#7FBA00" d="M12.5 2H22v9.5h-9.5z"/><path fill="#00A4EF" d="M2 12.5h9.5V22H2z"/><path fill="#FFB900" d="M12.5 12.5H22V22h-9.5z"/></svg>Microsoft</button>
+          </div>
+
+          <p class="auth-switch"><span id="authSwitchText">Chưa có tài khoản?</span> <button type="button" class="auth-link" id="authSwitchBtn">Đăng ký ngay</button></p>
+          <details class="auth-demo" open>
+            <summary>🔑 Tài khoản demo — bấm để điền</summary>
+            <div class="demo-chips">
+              <button type="button" data-demo="admin@glowe.vn|Admin@123"><span class="ico">👑</span><span><b>Quản trị viên</b><br><small>vào Dashboard</small></span></button>
+              <button type="button" data-demo="khach@glowe.vn|Khach@123"><span class="ico">🛍</span><span><b>Khách hàng</b><br><small>mua sắm</small></span></button>
+            </div>
+          </details>
+        </form>
+      </div>
+    </main>
+
+    <!-- Dải chữ chạy: nội dung lặp 2 lần để chạy liền mạch -->
+    <div class="ribbon" aria-hidden="true"><div id="ribbon"></div></div>
+  </div>
+
+  <script src="js/common.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

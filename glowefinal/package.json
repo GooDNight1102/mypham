@@ -1,0 +1,16 @@
+{
+  "name": "glowe-cosmetics-microservices",
+  "version": "3.0.0",
+  "description": "GLOWÉ — Hệ thống bán mỹ phẩm theo kiến trúc microservices (User, Product, Order, Payment giả lập) — Supabase + Vercel",
+  "private": true,
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start": "node --env-file-if-exists=.env start.js",
+    "setup": "node --env-file-if-exists=.env setup.js",
+    "reset-db": "node --env-file-if-exists=.env setup.js --reset",
+    "test": "node --env-file-if-exists=.env --no-warnings test.js"
+  },
+  "dependencies": {
+    "postgres": "^3.4.5"
+  }
+}
