@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GLOWÉ — Mỹ phẩm chính hãng</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/i18n.js"></script>
+  <script>document.documentElement.dataset.theme = localStorage.getItem('glowe_theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');</script>
+</head>
+<body>
+  <header id="site-header" class="site-header"></header>
+
+  <main class="home">
+    <section class="hero">
+      <div class="floaters" aria-hidden="true">
+        <img class="hero-bg" src="https://i.pinimg.com/736x/3f/c5/01/3fc5013d6dfb97696e08ab29fc62dbd8.jpg" alt="" onerror="this.remove()">
+        <span style="left:6%;animation-duration:13s">🌸</span><span style="left:22%;animation-duration:17s;animation-delay:-5s">✨</span>
+        <span style="left:41%;animation-duration:15s;animation-delay:-9s">🫧</span><span style="left:58%;animation-duration:19s;animation-delay:-2s">💄</span>
+        <span style="left:73%;animation-duration:14s;animation-delay:-11s">🌷</span><span style="left:88%;animation-duration:18s;animation-delay:-7s">✨</span>
+      </div>
+      <div class="container hero-in">
+        <div>
+          <div class="eyebrow">Ưu đãi tháng 10</div>
+          <h1>Rạng rỡ mỗi ngày<br>cùng mỹ phẩm chính hãng</h1>
+          <p>Chăm sóc da, trang điểm, chống nắng và nước hoa được tuyển chọn. Miễn phí giao hàng cho đơn từ 500.000₫.</p>
+          <div class="actions"><a class="btn dark" href="#shop">Mua sắm ngay</a><a class="btn light" href="index.html?sort=sale#shop">Xem khuyến mãi</a></div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Sale hôm nay: sản phẩm có giá gốc, giảm nhiều nhất trước; đếm ngược tới 0h -->
+    <section class="container sec" id="sale" hidden>
+      <div class="sale-box">
+        <div class="sale-head">
+          <div><h2>⚡ Sale hôm nay</h2><p class="muted">Giá tốt nhất trong ngày, số lượng có hạn</p></div>
+          <div class="countdown"><span>Kết thúc sau</span> <b id="cdH">00</b>:<b id="cdM">00</b>:<b id="cdS">00</b></div>
+          <a class="auth-link" href="index.html?sort=sale#shop">Xem tất cả →</a>
+        </div>
+        <div class="sale-row" id="saleRow"></div>
+      </div>
+    </section>
+
+    <section class="container sec" id="shop">
+      <div class="sec-head"><h2>Danh mục sản phẩm</h2><p class="muted">Chọn danh mục để xem sản phẩm, bấm lần nữa để bỏ lọc</p></div>
+      <!-- Ô danh mục có ảnh = bộ lọc: data-cat lọc theo danh mục, data-q lọc theo từ khóa (Body không phải danh mục riêng) -->
+      <div class="cat-tiles" id="categories">
+        <button type="button" data-cat="trang-diem"><img src="https://i.pinimg.com/1200x/78/58/a1/7858a1302f139bcd7f028e77d93fc23c.jpg" alt="" loading="lazy" onerror="this.remove()"><span><b>Trang điểm</b><small>Khám phá →</small></span></button>
+        <button type="button" data-cat="cham-soc-da"><img src="https://i.pinimg.com/1200x/9e/a6/64/9ea66431b4fac8557eef65795f143c5a.jpg" alt="" loading="lazy" onerror="this.remove()"><span><b>Chăm sóc da</b><small>Khám phá →</small></span></button>
+        <button type="button" data-q="body"><img src="https://i.pinimg.com/1200x/f5/b2/84/f5b284b0b4cc2bb79002f801ed5bc2aa.jpg" alt="" loading="lazy" onerror="this.remove()"><span><b>Body</b><small>Khám phá →</small></span></button>
+        <button type="button" data-cat="nuoc-hoa"><img src="https://i.pinimg.com/736x/b0/bd/b0/b0bdb04c7025dc6ad8be7722a9274ef1.jpg" alt="" loading="lazy" onerror="this.remove()"><span><b>Nước hoa</b><small>Khám phá →</small></span></button>
+      </div>
+      <div class="toolbar">
+        <span class="count muted" id="count"></span>
+        <button type="button" class="chip" id="clearFilter" hidden>✕ Bỏ lọc</button>
+        <select id="brand" aria-label="Thương hiệu"><option value="">Tất cả thương hiệu</option></select>
+        <select id="sort" aria-label="Sắp xếp">
+          <option value="">Mới nhất</option>
+          <option value="sale">Giảm giá nhiều</option>
+          <option value="price_asc">Giá tăng dần</option>
+          <option value="price_desc">Giá giảm dần</option>
+        </select>
+      </div>
+      <div class="grid" id="products"></div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+  <script src="js/common.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>
